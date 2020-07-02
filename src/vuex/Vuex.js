@@ -7,7 +7,7 @@ const store = new Vuex.Store({
   debug: true,
   state: {
     config: {
-      apiRoot: "",
+      apiRoot: "https://api-json.sandboxappmax.com.br/",
       analyticsCode: ""
     },
     event: {},
