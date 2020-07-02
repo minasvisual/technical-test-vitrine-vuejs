@@ -1,3 +1,23 @@
 {
-    "ofertas":[]
+  "ofertas": [
+    {
+      "title": "Produto 1",
+      "value": "100",
+      "discount": "20",
+      "description": "sasdsadadasdsa",
+      "image": "https://loremflickr.com/cache/resized/2606_3928583653_4b747fbd53_320_240_nofilter.jpg",
+      "id": 1
+    },
+    {
+      "title": "Produto 2",
+      "value": "300",
+      "discount": "20",
+      "description": "ccczxczxcxzcxzczx",
+      "image": "https://loremflickr.com/cache/resized/2606_3928583653_4b747fbd53_320_240_nofilter.jpg",
+      "id": 2
+    }
+  ],
+  "subscriptions":[
+
+  ]
 }

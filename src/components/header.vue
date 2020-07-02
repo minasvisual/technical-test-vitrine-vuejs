@@ -1,7 +1,7 @@
 <template>
   <header>
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
       <a class="navbar-brand" href="#">
         <img src="https://s3-sa-east-1.amazonaws.com/prod-jobsite-files.kenoby.com/uploads/appmax-1585064428-logo-appmax-pretopng.png" alt style="height: 23px;">
       </a>
@@ -27,10 +27,10 @@
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
-          <div class="form-row col-12 col-sm-auto">
+          <div class="form-group col-12 col-sm-auto">
             <a
-              class="btn btn btn-sm btn-outline-light"
-              @click="$router.push('/nova-oferta')" >Buscar
+              class="btn btn-sm "
+              @click="$router.push('/nova-oferta')" >Nova Oferta
             </a> 
           </div>
         </form>
@@ -71,8 +71,8 @@ export default {
 };
 </script>
 <style scoped>
-/* .navbar-toggler:focus ~ #navbarCollapse {
-  display: block !important;
-} */
+.navbar-dark{
+  background-color: #ea907a;
+}
 </style>
 

@@ -22,13 +22,10 @@
             </div>
         </div>
         <div class="btn-group mr-2 shadow" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-outline-secondary" @click="showEvent(product)">
-                <i class="fa fa-eye"></i>
+            <button type="button" class="btn btn-outline-secondary" title="Inscreva-se!">
+                <i class="fas fa-bell"></i>
             </button>
-            <button type="button" class="btn btn-outline-secondary" >
-                <i class="fa fa-share-alt"></i>
-            </button>
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn btn-outline-secondary" title="Favoritar">
                 <i class="fa fa-heart"></i>
             </button>
         </div>

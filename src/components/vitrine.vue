@@ -1,8 +1,20 @@
 <template>
-  <section class="container d-flex flex-wrap p-0 mt-3">
+  <section class="container-fluid d-flex flex-wrap p-0 mt-3">
     
-    <h6 class="col-12 mt-2"> Ofertas </h6>
+    <h6 class="col-12 mt-2 text-left"> Patrocinado </h6>
+    <div class="row  w-100">
+      <div class="col-12 d-flex flex-wrap">
+        <Oferta  
+          v-show="(patrocinado.length > 0 && !isLoading)"
+          class="col-12 col-sm-4 col-lg-2 mb-3"
+          v-for="row in patrocinado"
+          :key="row.id"
+          :product="row" >
+        </Oferta>
+      </div>
+    </div>
 
+    <h6 class="col-12 mt-2 text-left"> Ofertas </h6>
     <div class="col-12 d-flex justify-content-center" v-if="isLoading">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
@@ -13,11 +25,11 @@
       <h4 align="center">Não há resultados para a pesquisa.</h4>
     </div>
 
-    <div class="row">
+    <div class="row w-100">
       <div class="col-12 d-flex flex-wrap">
         <Oferta  
           v-show="(ofertas.length > 0 && !isLoading)"
-          class="col-md-3 mb-3"
+          class="col-12 col-sm-4 col-lg-2 mb-3"
           v-for="row in ofertas"
           :key="row.id"
           :product="row" >
@@ -42,6 +54,7 @@ export default {
   data: function() {
     return {
       isLoading: false,
+      patrocinado: [],
       ofertas: [],
     };
   },
@@ -49,17 +62,29 @@ export default {
     config: function(){ return this.$store.state.config }
   },
   mounted: function() {
-    this.getPatrocinados();
+    this.getPatrocinados().then(this.getOfertas);
   },
   methods: {
-    getPatrocinados: function(query = "") {
+    getPatrocinados: function() {
       var self = this;
       this.setLoad(true);
 
-      return fetch( this.config.apiRoot + query )
+      return fetch( this.config.apiPatrocinado )
         .then(data => data.json())
         .then(json => {
-          self.ofertas = json;
+          self.patrocinado = json;
+          self.setLoad(false);
+          return json;
+        });
+    }, 
+    getOfertas: function() {
+      var self = this;
+      this.setLoad(true);
+
+      return fetch( this.config.apiRoot + 'ofertas')
+        .then(data => data.json())
+        .then(json => {
+          self.ofertas = [ ...self.ofertas, ...json];
           self.setLoad(false);
           return json;
         });

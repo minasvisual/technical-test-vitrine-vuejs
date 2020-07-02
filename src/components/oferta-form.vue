@@ -1,5 +1,5 @@
 <template>
-  <form class="form-horizontal text-left">
+  <form class="form-horizontal text-left" @submit.prevent="saveOferta()">
     <h5>Nova Oferta</h5>
     <div class="row">
         <div class="col-7">
@@ -9,7 +9,7 @@
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Preço</label>
-            <input type="number" v-model="form.price"  class="form-control" id="exampleFormControlInput1" placeholder="0.00" min=0 pattern="[\d]*" required>
+            <input type="number" v-model="form.value"  class="form-control" id="exampleFormControlInput1" placeholder="0.00" min=0 pattern="[\d]*" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1">Desconto</label>
@@ -53,7 +53,27 @@ export default {
     }
   },
   methods: {
-    showEvent() {
+    saveOferta() {
+        fetch(this.config.apiRoot+'ofertas', {
+          method:'POST', 
+          body: JSON.stringify(this.form),
+          headers:{ 'Content-Type': 'application/json'}
+        })
+        .then(data => data.json())
+        .then(() => {
+          this.setAlert("Salvo com sucesso")
+          this.form = {}
+        })
+        .catch(() => {
+          this.setAlert("Erro ao salvar oferta, tente novamente!", 'danger')
+        })
+    },
+    setAlert(message='', type='success'){
+        this.$store.state.alert = {
+          status: "alert alert-"+type,
+          message: message
+        };
+        setTimeout(() => this.$store.state.alert = {}, 3000)
     }
   }
 };
