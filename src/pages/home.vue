@@ -1,15 +1,15 @@
 <template>
   <section>
-    <Patrocinado />
+    <Vitrine />
   </section>
 </template>
 
 <script>
-import Patrocinado from '../components/patrocinado'
+import Vitrine from '../components/vitrine'
 export default {
   name: "Home",
   components: {
-    Patrocinado
+    Vitrine
   }
 };
 </script>

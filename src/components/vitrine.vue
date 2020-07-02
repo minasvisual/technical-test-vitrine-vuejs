@@ -1,7 +1,7 @@
 <template>
-  <section class="container-fluid d-flex flex-wrap p-0 mt-3">
+  <section class="container d-flex flex-wrap p-0 mt-3">
     
-    <h6 class="col-12 mt-2"> Patrocinado </h6>
+    <h6 class="col-12 mt-2"> Ofertas </h6>
 
     <div class="col-12 d-flex justify-content-center" v-if="isLoading">
       <div class="spinner-border" role="status">
@@ -17,7 +17,7 @@
       <div class="col-12 d-flex flex-wrap">
         <Oferta  
           v-show="(ofertas.length > 0 && !isLoading)"
-          class="col-md-3 event mb-3"
+          class="col-md-3 mb-3"
           v-for="row in ofertas"
           :key="row.id"
           :product="row" >
@@ -35,7 +35,7 @@ import Oferta from "./oferta";
 Vue.prototype.moment = moment;
 
 export default {
-  name: "Patrocinado",
+  name: "Vitrine",
   components:{
     Oferta
   },
