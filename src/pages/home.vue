@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="bg-white shadow mt-3">
     <Vitrine />
   </section>
 </template>

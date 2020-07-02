@@ -3,7 +3,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <a class="navbar-brand" href="#">
-        <img src="/assets/images/nome-nightfy.png" alt style="height: 23px;">
+        <img src="https://s3-sa-east-1.amazonaws.com/prod-jobsite-files.kenoby.com/uploads/appmax-1585064428-logo-appmax-pretopng.png" alt style="height: 23px;">
       </a>
       <button
         class="navbar-toggler"
@@ -28,10 +28,10 @@
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <div class="form-row col-12 col-sm-auto">
-            <button
+            <a
               class="btn btn btn-sm btn-outline-light"
-              type="button"
-            >Buscar</button> 
+              @click="$router.push('/nova-oferta')" >Buscar
+            </a> 
           </div>
         </form>
       </div>

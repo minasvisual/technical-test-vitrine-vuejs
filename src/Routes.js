@@ -1,8 +1,8 @@
 import Home from "./pages/home";
+import OfertaAdmin from "./pages/oferta-admin";
 
 export const routes = [
   { path: "/", component: Home },
-  { path: "/:type/:name", component: Home },
-  { path: "/#!/:type/:name", component: Home },
+  { path: "/nova-oferta", component: OfertaAdmin },
   { path: "*", redirect: "/" }
 ];
