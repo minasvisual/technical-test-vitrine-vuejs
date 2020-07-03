@@ -1,20 +1,19 @@
 <template>
   <section class="container-fluid d-flex flex-wrap p-0 mt-3">
     
-    <h6 class="col-12 mt-2 text-left"> Patrocinado </h6>
-    <div class="row  w-100">
-      <div class="col-12 d-flex flex-wrap">
-        <Oferta  
-          v-show="(patrocinado.length > 0 && !isLoading)"
-          class="col-12 col-sm-4 col-lg-2 mb-3"
-          v-for="row in patrocinado"
-          :key="row.id"
-          :product="row" >
-        </Oferta>
-      </div>
+    <h6 class="col-12 mt-2 text-left border-bottom "> Patrocinado </h6>
+    <div class="col-12 d-flex flex-wrap">
+      <Oferta  
+        v-show="(patrocinado.length > 0 && !isLoading)"
+        class="col-12 col-sm-4 col-lg-2 mb-3"
+        v-for="row in patrocinado"
+        :key="row.id"
+        :product="row"
+        type="patrocinado" >
+      </Oferta>
     </div>
 
-    <h6 class="col-12 mt-2 text-left"> Ofertas </h6>
+    <h6 class="col-12 mt-2 text-left border-bottom"> Ofertas </h6>
     <div class="col-12 d-flex justify-content-center" v-if="isLoading">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
@@ -25,16 +24,15 @@
       <h4 align="center">Não há resultados para a pesquisa.</h4>
     </div>
 
-    <div class="row w-100">
-      <div class="col-12 d-flex flex-wrap">
-        <Oferta  
-          v-show="(ofertas.length > 0 && !isLoading)"
-          class="col-12 col-sm-4 col-lg-2 mb-3"
-          v-for="row in ofertas"
-          :key="row.id"
-          :product="row" >
-        </Oferta>
-      </div>
+    <div class="col-12 d-flex flex-wrap">
+      <Oferta  
+        v-show="(ofertas.length > 0 && !isLoading)"
+        class="col-12 col-sm-4 col-lg-2 mb-3"
+        v-for="row in lazyload"
+        :key="row.id"
+        :product="row"
+        type="oferta" >
+      </Oferta>
     </div>
 
   </section>
@@ -56,6 +54,10 @@ export default {
       isLoading: false,
       patrocinado: [],
       ofertas: [],
+      lazyload: [],
+      loadCount: 0,
+      loadTotal: 0,
+      perLoad:6
     };
   },
   computed:{
@@ -63,6 +65,8 @@ export default {
   },
   mounted: function() {
     this.getPatrocinados().then(this.getOfertas);
+
+    window.onscroll = this.loadMore
   },
   methods: {
     getPatrocinados: function() {
@@ -79,6 +83,7 @@ export default {
     }, 
     getOfertas: function() {
       var self = this;
+      //var pages = [];
       this.setLoad(true);
 
       return fetch( this.config.apiRoot + 'ofertas')
@@ -86,8 +91,18 @@ export default {
         .then(json => {
           self.ofertas = [ ...self.ofertas, ...json];
           self.setLoad(false);
+          self.loadTotal = self.ofertas.length
+          this.loadMore()
           return json;
         });
+    },
+    loadMore(){
+      if( this.loadTotal < this.loadCount )return;
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        let news = this.ofertas.slice(this.loadCount, this.loadCount+this.perLoad);
+        this.lazyload = [ ...this.lazyload, ...news]
+        this.loadCount = this.loadCount+this.perLoad;
+      }
     },
     setLoad: function(load) {
       var self = this;

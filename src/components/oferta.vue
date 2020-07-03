@@ -21,31 +21,29 @@
               </div>
             </div>
         </div>
-        <div class="btn-group mr-2 shadow" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-outline-secondary" title="Inscreva-se!">
-                <i class="fas fa-bell"></i>
-            </button>
-            <button type="button" class="btn btn-outline-secondary" title="Favoritar">
-                <i class="fa fa-heart"></i>
-            </button>
-        </div>
+        <Inscricao :product="product" :type="type" />
   </article>
 </template>
 <script>
 import Vue from "vue";
 import moment from "moment";
+import Inscricao from './inscricao'
 
 Vue.prototype.moment = moment;
 
 export default {
   name: "Oferta",
+  components:{
+    Inscricao
+  },
   data: function() {
     return {
       isLoading: false
     };
   },
   props:{
-      product:{}
+      product:{},
+      type:String
   }
 }
 </script>
@@ -57,14 +55,6 @@ export default {
 .event .card.shadow {
   border: 0px !important;
   transition: all 0.5s;
-}
-.event .btn-group {
-  margin-top: -20px;
-  background: #fff;
-}
-.event .btn-group .btn {
-  border: 0px;
-  padding: 3px 10px;
 }
 .event .card-header{
    position:absolute;
