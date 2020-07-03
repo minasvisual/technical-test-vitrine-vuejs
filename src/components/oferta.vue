@@ -17,7 +17,7 @@
               <div class="small d-block py-1" v-if="product.discount > 0">
                 <span style="text-decoration: line-through;">R$ {{product.value}}</span> 
                 por 
-                <b class="h6">R$ {{ product.value - product.discount }}</b>
+                <b class="h6" style="font-weight: bold">R$ {{ product.value - product.discount }}</b>
               </div>
             </div>
         </div>
@@ -50,7 +50,6 @@ export default {
 
 <style scoped>
 .event{
-  height: 310px;
 }
 .event .card.shadow {
   border: 0px !important;

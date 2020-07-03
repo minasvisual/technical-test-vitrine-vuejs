@@ -1,5 +1,5 @@
 <template>
-  <section id="app">
+  <section id="app" class="bg-white">
     <Header/>
     <router-view></router-view>
   </section>

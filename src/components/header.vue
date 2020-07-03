@@ -21,7 +21,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <router-link class="nav-link" to="/">
-              Home
+              Vitrine
               <span class="sr-only">(current)</span>
             </router-link>
           </li>

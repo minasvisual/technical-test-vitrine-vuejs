@@ -57,7 +57,7 @@ export default {
       lazyload: [],
       loadCount: 0,
       loadTotal: 0,
-      perLoad:6
+      perLoad:12
     };
   },
   computed:{
@@ -97,11 +97,11 @@ export default {
         });
     },
     loadMore(){
-      if( this.loadTotal < this.loadCount )return;
+      if( this.loadTotal < this.loadCount ) return;
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        let news = this.ofertas.slice(this.loadCount, this.loadCount+this.perLoad);
-        this.lazyload = [ ...this.lazyload, ...news]
-        this.loadCount = this.loadCount+this.perLoad;
+          let news = this.ofertas.slice(this.loadCount, this.loadCount+this.perLoad);
+          this.lazyload = [ ...this.lazyload, ...news]
+          this.loadCount = this.loadCount+this.perLoad;
       }
     },
     setLoad: function(load) {

@@ -1,6 +1,6 @@
 <template>
   <form class="form-horizontal text-left" @submit.prevent="saveOferta()">
-    <h5>Nova Oferta</h5>
+    <h5 class="pb-2 border-bottom">Nova Oferta</h5>
     <div class="row">
         <div class="col-7">
           <div class="form-group">
